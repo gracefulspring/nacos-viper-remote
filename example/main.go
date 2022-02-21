@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/spf13/viper"
-	remote "github.com/yoyofxteam/nacos-viper-remote"
+	remote "github.com/gracefulspring/nacos-viper-remote"
 	"os"
 	"os/signal"
 	"syscall"
