@@ -67,7 +67,7 @@ func main() {
 func onExit() {
 	c := make(chan os.Signal)
 	signal.Notify(c, syscall.SIGHUP, syscall.SIGINT, syscall.SIGTERM,
-		syscall.SIGQUIT, syscall.SIGUSR1, syscall.SIGUSR2)
+		syscall.SIGQUIT, syscall.SIGKILL)
 
 	for s := range c {
 		switch s {
