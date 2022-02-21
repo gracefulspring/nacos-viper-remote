@@ -1,4 +1,4 @@
-module github.com/yoyofxteam/nacos-viper-remote
+module github.com/gracefulspring/nacos-viper-remote
 
 go 1.16
 
