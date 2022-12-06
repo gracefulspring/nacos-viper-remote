@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	"github.com/spf13/viper"
 	remote "github.com/gracefulspring/nacos-viper-remote"
+	"github.com/spf13/viper"
 	"os"
 	"os/signal"
 	"syscall"
@@ -16,7 +16,7 @@ func main() {
 	runtime_viper.SetConfigFile("./example_config.yaml")
 	_ = runtime_viper.ReadInConfig()
 	var option *remote.Option
-	_ = runtime_viper.Sub("yoyogo.cloud.discovery.metadata").Unmarshal(&option)
+	_ = runtime_viper.Sub("cloud.discovery.metadata").Unmarshal(&option)
 
 	remote.SetOptions(option)
 
@@ -30,7 +30,7 @@ func main() {
 	//})
 	//localSetting := runtime_viper.AllSettings()
 	remote_viper := viper.New()
-	err := remote_viper.AddRemoteProvider("nacos", "localhost", "")
+	err := remote_viper.AddRemoteProvider("nacos", "10.1.120.30", "")
 	remote_viper.SetConfigType("yaml")
 	err = remote_viper.ReadRemoteConfig()
 
@@ -43,20 +43,20 @@ func main() {
 		go func(rc <-chan bool) {
 			for {
 				<-rc
-				fmt.Printf("remote async: %s", config_viper.GetString("yoyogo.application.name"))
+				fmt.Printf("remote async: %s", config_viper.GetString("application.name"))
 			}
 		}(respChan)
 
 	}
 
-	appName := config_viper.GetString("yoyogo.application.name")
+	appName := config_viper.GetString("service.name")
 
 	fmt.Println(appName)
 
 	go func() {
 		for {
 			time.Sleep(time.Second * 30) // delay after each request
-			appName = config_viper.GetString("yoyogo.application.name")
+			appName = config_viper.GetString("application.name")
 			fmt.Println("sync:" + appName)
 		}
 	}()

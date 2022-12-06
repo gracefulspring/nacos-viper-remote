@@ -1,25 +1,24 @@
-yoyogo:
-  application:
-    name: yoyogo_demo_dev
-  cloud:
-    discovery:
-      cache:
-        ttl: 30     # seconds
-      strategy: "round-robin"    # round-robin  , weight-time ,  random
-      type: "nacos"
-      metadata:
-        url: "localhost"
-        port: 80
-        namespace: "public"
-        group: "DEFAULT_GROUP"
-        configserver:
-          dataId: "config_dev"
-        auth:
-          enable: true
-          username: "root"
-          password: "1234"
-          endpoint: ""
-          regionId: ""
-          accessKey: ""
-          secretKey: ""
-          openKMS: false
+application:
+  name: yoyogo_demo_dev
+cloud:
+  discovery:
+    cache:
+      ttl: 30     # seconds
+    strategy: "round-robin"    # round-robin  , weight-time ,  random
+    type: "nacos"
+    metadata:
+      url: "10.1.120.30"
+      port: 30050
+      namespace: "dev"
+      group: "istorm-cnbr"
+      configserver:
+        dataId: "istorm-cnbr-operator-dev.yaml"
+      auth:
+        enable: true
+        username: "nacos"
+        password: ""
+        endpoint: ""
+        regionId: ""
+        accessKey: ""
+        secretKey: ""
+        openKMS: false
